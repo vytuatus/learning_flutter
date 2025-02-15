@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_flutter/login_page.dart';
 
 void main() {
   runApp(const ChatApp());
@@ -18,22 +19,3 @@ class ChatApp extends StatelessWidget {
     );
   }
 }
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat App'),
-      ),
-      drawer: Drawer(),
-      floatingActionButton: FloatingActionButton(onPressed: () {print("Button Clicked");}, child: Icon(Icons.add),),
-      body: Text("data"),
-    );
-  }
-}
-
