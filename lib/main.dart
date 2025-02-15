@@ -12,9 +12,27 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chat App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
-      home: const Text("Chat Apppppp"),
+      home: LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Chat App'),
+      ),
+      drawer: Drawer(),
+      floatingActionButton: FloatingActionButton(onPressed: () {print("Button Clicked");}, child: Icon(Icons.add),),
+      body: Text("data"),
     );
   }
 }
