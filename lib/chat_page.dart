@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:learning_flutter/login_page.dart';
+import 'package:learning_flutter/widgets/chat_bubble.dart';
+import 'package:learning_flutter/widgets/chat_input.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({
     super.key,
   });
-  
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -28,109 +30,20 @@ class ChatPage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
+      body: Column(
         children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              padding: EdgeInsets.all(24),
-              margin: const EdgeInsets.all(50),
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Hi. this is a message!", style: TextStyle(fontSize: 20, color: Colors.white),),
-                  Image.network("https://picsum.photos/250?image=9", height: 200,),
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              padding: EdgeInsets.all(24),
-              margin: const EdgeInsets.all(50),
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Hi. this is a message!", style: TextStyle(fontSize: 20, color: Colors.white),),
-                  Image.network("https://picsum.photos/250?image=9", height: 200,),
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              padding: EdgeInsets.all(24),
-              margin: const EdgeInsets.all(50),
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Hi. this is a message!", style: TextStyle(fontSize: 20, color: Colors.white),),
-                  Image.network("https://picsum.photos/250?image=9", height: 200,),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: 100,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(30),
-                bottom: Radius.circular(30),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Expanded(
+            //fit: FlexFit.tight,
+            //flex: 3,
+            child: ListView(
               children: [
-                IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {},
-                  color: Colors.white,
-                ),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Type a message',
-                      hintStyle: TextStyle(color: Colors.white),
-                      border: InputBorder.none,
-                    ),
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(Icons.send),
-                  onPressed: () {},
-                  color: Colors.white,
-                ),
+                ChatBubble(alignment: Alignment.centerLeft, message: "Hi. this is a message!"),
+                ChatBubble(alignment: Alignment.centerRight, message: "Hi!"),
+                ChatBubble(alignment: Alignment.centerLeft, message: "How are you?"),
               ],
             ),
-          )
+          ),
+          ChatInput()
         ],
       ),
     );
