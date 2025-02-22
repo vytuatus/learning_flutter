@@ -5,10 +5,10 @@ class ChatBubble extends StatelessWidget {
   final String message;
 
   const ChatBubble({
-    Key? key,
+    super.key,
     required this.alignment,
     required this.message,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
