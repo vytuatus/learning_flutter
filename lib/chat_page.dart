@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/login_page.dart';
 import 'package:learning_flutter/widgets/chat_bubble.dart';
 import 'package:learning_flutter/widgets/chat_input.dart';
 
@@ -10,22 +9,17 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final username = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text('Chat Page'),
+        title: Text('Hi $username!'),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
-                ),
-              );
+              Navigator.pushReplacementNamed(context, '/');
             },
           ),
         ],
@@ -44,13 +38,6 @@ class ChatPage extends StatelessWidget {
                 );
               },
             ), 
-            // ListView(
-            //   children: [
-            //     ChatBubble(alignment: Alignment.centerLeft, message: "Hi. this is a message!"),
-            //     ChatBubble(alignment: Alignment.centerRight, message: "Hi!"),
-            //     ChatBubble(alignment: Alignment.centerLeft, message: "How are you?"),
-            //   ],
-            // ),
           ),
           ChatInput()
         ],

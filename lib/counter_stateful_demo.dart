@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CounterStatefulDemo extends StatefulWidget {
 
   Color buttonColor;
-  CounterStatefulDemo({Key? key, required this.buttonColor}) : super(key: key);
+  CounterStatefulDemo({super.key, required this.buttonColor});
 
   @override
   _CounterStatefulDemoState createState() => _CounterStatefulDemoState();
