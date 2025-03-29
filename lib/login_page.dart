@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/utils/textfield_styles.dart';
+import 'package:learning_flutter/utils/spaces.dart';
 import 'package:learning_flutter/widgets/login_text_field.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({
@@ -25,6 +26,8 @@ class LoginPage extends StatelessWidget {
 
   final userNameController = TextEditingController();
   final passwordNameController = TextEditingController();
+  final _mainUrl = 'https://www.google.com';
+  final _fallbackUrl = 'https://www.google.com';
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +59,8 @@ class LoginPage extends StatelessWidget {
                   color: Colors.blueGrey,
                 ),
               ),
-              Image.network(
-                'https://picsum.photos/250?image=9',
+              Image.asset(
+                'login_picture.jpg',
                 height: 200,
                 ),
               Form(
@@ -76,7 +79,7 @@ class LoginPage extends StatelessWidget {
                       controller: userNameController,
                       hintText: 'User name',
                     ),
-                    SizedBox(height: 10),
+                    verticalSpacing(space: 24),
                     LoginTextField(
                       controller: passwordNameController,
                       obscureText: true,
@@ -85,7 +88,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              verticalSpacing(space: 24),
               ElevatedButton(
                 onPressed: () {
                   loginButton(context);
@@ -94,8 +97,12 @@ class LoginPage extends StatelessWidget {
               ),
               InkWell(
                 splashColor: Colors.red,
-                onTap: () {
+                onTap: () async{
                   print('Link clicked');
+                  if (!await launchUrl(Uri.parse(_mainUrl), mode: LaunchMode.externalApplication)) {
+                    print('Could not launch $_mainUrl');
+                    throw 'Could not launch $_mainUrl';
+                  }
                 },
                 child: Column(
                   children: [

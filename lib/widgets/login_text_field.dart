@@ -8,12 +8,12 @@ class LoginTextField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
 
   const LoginTextField({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.controller,
     this.validator,
     this.obscureText = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
