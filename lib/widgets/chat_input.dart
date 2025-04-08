@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:learning_flutter/models/chat_message_entity.dart';
 
 class ChatInput extends StatelessWidget {
+  final Function(ChatMessageEntity) onSendMessage;
   ChatInput({
-    super.key,
+    super.key, required this.onSendMessage, 
   });
 
   final chatMessageController = TextEditingController();
 
   void sendMessage() {
-    print(chatMessageController.text);
+    
+    final newChatMessage = ChatMessageEntity(
+      text: chatMessageController.text, 
+      id: "244", 
+      createdAt: DateTime.now().millisecondsSinceEpoch, 
+      author: Author(userName: "vyts1"),
+    );
+
+    onSendMessage(newChatMessage);
     chatMessageController.clear();
   }
 

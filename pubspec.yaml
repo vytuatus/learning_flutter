@@ -36,6 +36,11 @@ dependencies:
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
   url_launcher: ^6.3.1
+  sign_in_button: ^3.0.0
+  social_media_buttons:
+    git:
+      url: https://github.com/ianfrye0818/social_media_buttons
+      ref: master
 
 
 dev_dependencies:

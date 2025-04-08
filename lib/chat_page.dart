@@ -1,14 +1,48 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:learning_flutter/models/chat_message_entity.dart';
 import 'package:learning_flutter/widgets/chat_bubble.dart';
 import 'package:learning_flutter/widgets/chat_input.dart';
 
-class ChatPage extends StatelessWidget {
-  const ChatPage({
+class ChatPage extends StatefulWidget {
+  ChatPage({
     super.key,
   });
 
   @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  List<ChatMessageEntity> _messages = [];
+
+  _loadInitialMessages() async {
+    final response = await rootBundle.loadString('mock_messages.json');
+    final List<dynamic> decodedJson = jsonDecode(response) as List;
+    final List<ChatMessageEntity> _chatMessages = decodedJson.map((listItem) => ChatMessageEntity.fromJson(listItem)).toList();
+    print(_chatMessages.length);
+
+    setState(() {
+      _messages = _chatMessages;
+    });
+  }
+
+  _addMessage(ChatMessageEntity message) {
+    setState(() {
+      _messages.add(message);
+    });
+  }
+
+  @override
+  void initState() {
+    _loadInitialMessages();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
+    _loadInitialMessages();
     final username = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
@@ -30,19 +64,18 @@ class ChatPage extends StatelessWidget {
             //fit: FlexFit.tight,
             //flex: 3,
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: _messages.length,
               itemBuilder: (context, index) {
                 return ChatBubble(
-                  alignment: index % 2 == 0 ? Alignment.centerLeft : Alignment.centerRight,
-                  message: "Hi. this is a message!",
+                  alignment: _messages[index].author.userName == 'vyts1' ? Alignment.centerRight : Alignment.centerLeft,
+                  chatMessageEntity: _messages[index],
                 );
               },
             ), 
           ),
-          ChatInput()
+          ChatInput(onSendMessage: _addMessage),
         ],
       ),
     );
   }
-  
 }

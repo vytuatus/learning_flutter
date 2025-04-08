@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:learning_flutter/utils/spaces.dart';
 import 'package:learning_flutter/widgets/login_text_field.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:social_media_buttons/social_media_buttons.dart';
+
 
 class LoginPage extends StatelessWidget {
   LoginPage({
@@ -110,6 +112,13 @@ class LoginPage extends StatelessWidget {
                     Text('www.google.com'),
                   ],
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SocialMediaButton.twitter(url: "https://twitter.com/", color: Colors.blue,),
+                  SocialMediaButton.linkedin(url: "https://www.linkedin.com/"),
+                ],
               )
             ],
           ),
