@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learning_flutter/models/chat_message_entity.dart';
@@ -22,8 +22,8 @@ class _ChatPageState extends State<ChatPage> {
     final response = await rootBundle.loadString('mock_messages.json');
     final List<dynamic> decodedJson = jsonDecode(response) as List;
     final List<ChatMessageEntity> _chatMessages = decodedJson.map((listItem) => ChatMessageEntity.fromJson(listItem)).toList();
-    print(_chatMessages.length);
-
+    //print(_chatMessages.length);
+    print("kurwa");
     setState(() {
       _messages = _chatMessages;
     });
@@ -35,15 +35,22 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 
+  _getNetworkImages() {
+    var endpoint = Uri.parse('http://127.0.0.1:8000/images');
+    final response = http.get(endpoint);
+    print(response);
+  }
+
   @override
   void initState() {
     _loadInitialMessages();
+    _getNetworkImages();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    _loadInitialMessages();
     final username = ModalRoute.of(context)!.settings.arguments as String;
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
