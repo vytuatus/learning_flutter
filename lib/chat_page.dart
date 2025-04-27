@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learning_flutter/models/chat_message_entity.dart';
+import 'package:learning_flutter/models/image_model.dart';
+import 'package:learning_flutter/repo/image_repository.dart';
 import 'package:learning_flutter/widgets/chat_bubble.dart';
 import 'package:learning_flutter/widgets/chat_input.dart';
 
@@ -35,16 +36,9 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 
-  _getNetworkImages() {
-    var endpoint = Uri.parse('http://127.0.0.1:8000/images');
-    final response = http.get(endpoint);
-    print(response);
-  }
-
   @override
   void initState() {
     _loadInitialMessages();
-    _getNetworkImages();
     super.initState();
   }
   @override

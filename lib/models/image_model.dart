@@ -1,13 +1,13 @@
-class PixelformImage {
-  String? id;
-  String? name;
-  String? description;
-  String? imageUrl;
-  String? thumbnailUrl;
-  String? createdAt;
-  String? updatedAt;
+class CustomImage {
+  final String? id;
+  final String? name;
+  final String? description;
+  final String? imageUrl;
+  final String? thumbnailUrl;
+  final String? createdAt;
+  final String? updatedAt;
 
-  PixelformImage({
+  CustomImage({
     this.id,
     this.name,
     this.description,
@@ -17,8 +17,8 @@ class PixelformImage {
     this.updatedAt,
   });
 
-  factory PixelformImage.fromJson(Map<String, dynamic> json) {
-    return PixelformImage(
+  factory CustomImage.fromJson(Map<String, dynamic> json) {
+    return CustomImage(
       id: json['id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
