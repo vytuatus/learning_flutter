@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_flutter/models/chat_message_entity.dart';
+import 'package:learning_flutter/services/auth.dart';
 import 'package:learning_flutter/widgets/picker_body.dart';
 
 class ChatInput extends StatefulWidget {
@@ -23,7 +24,7 @@ class _ChatInputState extends State<ChatInput> {
       text: chatMessageController.text, 
       id: "244", 
       createdAt: DateTime.now().millisecondsSinceEpoch, 
-      author: Author(userName: "vyts1"),
+      author: Author(userName: AuthService().getCurrentUser()!),
     );
     if (_selectedImageUri.isNotEmpty) {
       newChatMessage.imageUrl = _selectedImageUri; // Add the image URL to the message

@@ -4,8 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:learning_flutter/models/chat_message_entity.dart';
 import 'package:learning_flutter/models/image_model.dart';
 import 'package:learning_flutter/repo/image_repository.dart';
+import 'package:learning_flutter/services/auth.dart';
 import 'package:learning_flutter/widgets/chat_bubble.dart';
 import 'package:learning_flutter/widgets/chat_input.dart';
+import 'package:provider/provider.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({
@@ -43,8 +45,8 @@ class _ChatPageState extends State<ChatPage> {
   }
   @override
   Widget build(BuildContext context) {
-    final username = ModalRoute.of(context)!.settings.arguments as String;
-    
+    //final username = ModalRoute.of(context)!.settings.arguments as String;
+    final username = context.read<AuthService>().getCurrentUser();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -62,13 +64,11 @@ class _ChatPageState extends State<ChatPage> {
       body: Column(
         children: [
           Expanded(
-            //fit: FlexFit.tight,
-            //flex: 3,
             child: ListView.builder(
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 return ChatBubble(
-                  alignment: _messages[index].author.userName == 'vyts1' ? Alignment.centerRight : Alignment.centerLeft,
+                  alignment: _messages[index].author.userName == context.read<AuthService>().getCurrentUser() ? Alignment.centerRight : Alignment.centerLeft,
                   chatMessageEntity: _messages[index],
                 );
               },

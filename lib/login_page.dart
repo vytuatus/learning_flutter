@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_flutter/services/auth.dart';
 import 'package:learning_flutter/utils/spaces.dart';
 import 'package:learning_flutter/widgets/login_text_field.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,6 +17,8 @@ class LoginPage extends StatelessWidget {
     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
       print(userNameController.text);
       print(passwordNameController.text);
+      AuthService().Login(userNameController.text, passwordNameController.text);
+      AuthService().setUser(userNameController.text);
 
       // Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(username: userNameController.text,)));
       Navigator.pushReplacementNamed(context, '/chat', arguments: userNameController.text);
@@ -61,10 +64,18 @@ class LoginPage extends StatelessWidget {
                   color: Colors.blueGrey,
                 ),
               ),
-              Image.asset(
-                'login_picture.jpg',
+              verticalSpacing(space: 24),
+              Container(
                 height: 200,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('login_picture.jpg'),
+                  ),
+                  borderRadius: BorderRadius.circular(20),
                 ),
+              ),
+              verticalSpacing(space: 24),
               Form(
                 key: _formKey,
                 child: Column(

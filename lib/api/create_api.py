@@ -47,3 +47,4 @@ async def get_images():
             "updated_at": datetime.utcnow().isoformat(),
         },
     ]
+    # uvicorn lib.api.create_api:app --reload
